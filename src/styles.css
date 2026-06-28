@@ -118,17 +118,68 @@
 
 @keyframes pulse-ring {
   0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 0.2; }
+  50% { transform: scale(1.2); opacity: 0.15; }
 }
 @keyframes wave {
-  0%, 100% { transform: scaleY(0.3); }
+  0%, 100% { transform: scaleY(0.25); }
   50% { transform: scaleY(1); }
 }
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes ping-soft {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
 }
 
 .animate-pulse-ring { animation: pulse-ring 2.4s ease-in-out infinite; }
-.animate-wave { animation: wave 1.2s ease-in-out infinite; }
+.animate-wave { animation: wave 1.1s ease-in-out infinite; }
 .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-orb-drift { animation: orb-drift 18s ease-in-out infinite; }
+.animate-grid-pan { animation: grid-pan 12s linear infinite; }
+.animate-fade-up { animation: fade-up 0.9s ease-out both; }
+.animate-spin-slow { animation: spin-slow 24s linear infinite; }
+.animate-ping-soft { animation: ping-soft 2.4s cubic-bezier(0,0,0.2,1) infinite; }
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.66 0.25 300) 0%,
+    oklch(0.68 0.2 245) 25%,
+    oklch(0.82 0.16 200) 50%,
+    oklch(0.68 0.2 245) 75%,
+    oklch(0.66 0.25 300) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
