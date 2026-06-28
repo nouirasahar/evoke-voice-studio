@@ -1,4 +1,5 @@
 import { Headphones, Layers, Code2, Container, Repeat, ShieldCheck } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 const features = [
   { icon: Headphones, title: "Contextual Speech-to-Text", desc: "Domain-aware transcription that understands product, technical, and industry vocabulary." },
@@ -19,14 +20,16 @@ export function Features() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <div key={f.title} className="glass relative overflow-hidden rounded-2xl p-6">
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl opacity-30"
-                   style={{ background: "var(--gradient-brand)" }} />
-              <f.icon className="h-6 w-6 text-[oklch(0.82_0.16_200)]" />
-              <h3 className="mt-4 text-lg font-semibold text-foreground">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
-            </div>
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={(i % 3) * 100}>
+              <div className="glass relative h-full overflow-hidden rounded-2xl p-6 transition hover:-translate-y-1">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl opacity-30 transition group-hover:opacity-60"
+                     style={{ background: "var(--gradient-brand)" }} />
+                <f.icon className="h-6 w-6 text-[oklch(0.82_0.16_200)]" />
+                <h3 className="mt-4 text-lg font-semibold text-foreground">{f.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
