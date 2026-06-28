@@ -1,4 +1,5 @@
 import { Mic2, FileText, Brain, Boxes, MonitorPlay } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 const steps = [
   { icon: Mic2, title: "Voice Command", desc: "Capture spoken intent through the studio mic." },
@@ -22,15 +23,17 @@ export function Workflow() {
           <div className="absolute left-0 right-0 top-12 hidden md:block h-px"
                style={{ background: "linear-gradient(90deg, transparent, oklch(1 0 0 / 0.15), transparent)" }} />
           {steps.map((s, i) => (
-            <div key={s.title} className="relative glass rounded-2xl p-6 text-center">
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl"
-                   style={{ background: "var(--gradient-brand)", boxShadow: "var(--shadow-glow)" }}>
-                <s.icon className="h-5 w-5 text-white" />
+            <Reveal key={s.title} delay={i * 90}>
+              <div className="relative glass rounded-2xl p-6 text-center transition hover:-translate-y-1 hover:shadow-[0_0_40px_-10px_oklch(0.66_0.25_300_/_0.6)]">
+                <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl"
+                     style={{ background: "var(--gradient-brand)", boxShadow: "var(--shadow-glow)" }}>
+                  <s.icon className="h-5 w-5 text-white" />
+                </div>
+                <div className="mt-4 text-xs font-mono text-muted-foreground">STEP {i + 1}</div>
+                <h3 className="mt-1 text-base font-semibold text-foreground">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
               </div>
-              <div className="mt-4 text-xs font-mono text-muted-foreground">STEP {i + 1}</div>
-              <h3 className="mt-1 text-base font-semibold text-foreground">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

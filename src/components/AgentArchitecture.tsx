@@ -1,4 +1,5 @@
 import { Mic, Brain, LayoutDashboard, Cog, Database, Server } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 const agents = [
   { icon: Mic, name: "Speech Agent", role: "Streams audio, denoises, and produces high-accuracy transcripts in real time." },
@@ -21,21 +22,25 @@ export function AgentArchitecture() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {agents.map((a) => (
-            <div key={a.name} className="glass group rounded-2xl p-6 transition hover:translate-y-[-2px]">
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-xl border border-white/10"
-                     style={{ background: "linear-gradient(135deg, oklch(0.22 0.05 270), oklch(0.18 0.04 270))" }}>
-                  <a.icon className="h-5 w-5 text-[oklch(0.82_0.16_200)]" />
+          {agents.map((a, i) => (
+            <Reveal key={a.name} delay={(i % 3) * 100}>
+              <div className="glass group relative h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-[0_0_40px_-10px_oklch(0.82_0.16_200_/_0.5)]">
+                <div className="absolute inset-x-0 top-0 h-px opacity-0 transition group-hover:opacity-100"
+                     style={{ background: "var(--gradient-brand)" }} />
+                <div className="flex items-center gap-3">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 transition group-hover:scale-110"
+                       style={{ background: "linear-gradient(135deg, oklch(0.22 0.05 270), oklch(0.18 0.04 270))" }}>
+                    <a.icon className="h-5 w-5 text-[oklch(0.82_0.16_200)]" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground">{a.name}</h3>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">{a.name}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.role}</p>
+                <div className="mt-5 flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.82_0.16_200)] animate-pulse" />
+                  agent.online
+                </div>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.role}</p>
-              <div className="mt-5 flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.82_0.16_200)]" />
-                agent.online
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
